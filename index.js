@@ -13,15 +13,5 @@ controller.spawn({
 
 // give the bot something to listen for.
 controller.hears('hello',['direct_message','direct_mention','mention'],function(bot,message) {
-
   bot.reply(message,'Hello yourself.');
-
-});
-
-
-controller.setupWebserver(process.env.port,function(err,webserver) {
-  webserver.get('/',function(req,res) {
-    var html = '<h1>Hello)</h1>';
-    res.send(html);
-  });
 });
