@@ -17,21 +17,9 @@ controller.hears('hello',['direct_message','direct_mention','mention'],function(
   bot.reply(message,'Hello yourself.');
 });
 
-// reply to any incoming message
-controller.on('message_received', function(bot, message) {
-    bot.reply(message, 'I heard... something!');
-});
-
-// reply to a direct mention - @bot hello
-controller.on('direct_mention',function(bot,message) {
-  // reply to _message_ by using the _bot_ object
-  bot.reply(message,'I heard you mention me!');
-});
-
-// reply to a direct message
-controller.on('direct_message',function(bot,message) {
-  // reply to _message_ by using the _bot_ object
-  bot.reply(message,'You are talking directly to me');
+controller.hears(['keyword','^pattern$'],['message_received'],function(bot,message) {
+  // do something to respond to message
+  bot.reply(message,'You used a keyword!');
 });
 
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name', 'ку-ку, ёпта', 'ку-ку, епта',],
