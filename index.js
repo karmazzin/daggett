@@ -6,6 +6,13 @@ var controller = Botkit.slackbot({
   //or a "logLevel" integer from 0 to 7 to adjust logging verbosity
 });
 
+controller.setupWebserver(process.env.port,function(err,webserver) {
+  webserver.get('/',function(req,res) {
+    var html = '<h1>Hello)</h1>';
+    res.send(html);
+  });
+});
+
 // connect the bot to a stream of messages
 controller.spawn({
   token: process.env.SLACK_BOT_TOKEN,
