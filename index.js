@@ -22,6 +22,14 @@ controller.hears(['keyword','^pattern$'],['message_received'],function(bot,messa
   bot.reply(message,'You used a keyword!');
 });
 
+controller.hears('open the (.*) doors',['message_received'],function(bot,message) {
+  var doorType = message.match[1]; //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
+  if (doorType === 'pod bay') {
+    return bot.reply(message, 'I\'m sorry, Dave. I\'m afraid I can\'t do that.');
+  }
+  return bot.reply(message, 'Okay');
+});
+
 controller.hears(['uptime', 'identify yourself', 'who are you', 'what is your name', 'ку-ку, ёпта', 'ку-ку, епта',],
     'direct_message,direct_mention,mention', function(bot, message) {
         var hostname = os.hostname();
