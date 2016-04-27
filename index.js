@@ -17,12 +17,12 @@ controller.hears('hello',['direct_message','direct_mention','mention'],function(
   bot.reply(message,'Hello yourself.');
 });
 
-controller.hears(['keyword','^pattern$'],['message_received'],function(bot,message) {
+controller.hears(['keyword','^pattern$'],['message_received','ambient'],function(bot,message) {
   // do something to respond to message
   bot.reply(message,'You used a keyword!');
 });
 
-controller.hears('open the (.*) doors',['message_received'],function(bot,message) {
+controller.hears('open the (.*) doors',['message_received','ambient'],function(bot,message) {
   var doorType = message.match[1]; //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
   if (doorType === 'pod bay') {
     return bot.reply(message, 'I\'m sorry, Dave. I\'m afraid I can\'t do that.');
