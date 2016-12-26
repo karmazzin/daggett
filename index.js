@@ -22,6 +22,19 @@ controller.hears(['keyword','^pattern$'],['message_received','ambient'],function
   bot.reply(message,'You used a keyword!');
 });
 
+controller.hears('(.*)',['message_received','ambient'],function(bot,message) {
+  // do something to respond to message
+    bot.api.reactions.add({
+        timestamp: message.ts,
+        channel: message.channel,
+        name: 'robot_face',
+    }, function(err, res) {
+        if (err) {
+            bot.botkit.log('Failed to add emoji reaction :(', err);
+        }
+    });
+});
+
 controller.hears('open the (.*) doors',['message_received','ambient'],function(bot,message) {
   var doorType = message.match[1]; //match[1] is the (.*) group. match[0] is the entire group (open the (.*) doors).
   if (doorType === 'pod bay') {
