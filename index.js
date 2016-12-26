@@ -22,7 +22,7 @@ controller.hears('(.*)',['message_received','ambient'],function(bot,message) {
     bot.api.reactions.add({
         timestamp: message.ts,
         channel: message.channel,
-        name: ':snowflake:',
+        name: 'snowflake',
     }, function(err, res) {
         if (err) {
             bot.botkit.log('Failed to add emoji reaction :(', err);
